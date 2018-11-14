@@ -1,6 +1,7 @@
-My solution for the katas: es6katas.
+#My solution for the katas:  
+[es6katas](http://es6katas.org/)
 
-Running test:
+## Running test:
 
-npm install
+npm install  
 npm test
