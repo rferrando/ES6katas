@@ -12,12 +12,12 @@ describe('Pass a value to a generator', () => {
     var convertedToAnArray = Array.from(generatorFunction());
     // way #2
     var iterator = generatorFunction();
-    var iteratedOver = [iterator.next().___, iterator.___];
+    var iteratedOver = [iterator.next().value, iterator.next().value]; //  var iteratedOver = [iterator.next().___, iterator.___];
     assert.deepEqual(convertedToAnArray, iteratedOver);
   });
   it('pass a value to the iterator', function() {
     function* generatorFunction() {
-      yield 1;
+      var param = yield 1; //yield 1;
       yield param;
     }
     var iterator = generatorFunction();
@@ -27,12 +27,13 @@ describe('Pass a value to a generator', () => {
   it('a value passed to the 1st `next()` call is ignored', function() {
     function* generatorFunction() {
       yield 1;
-      
+      yield param; /*añadido*/
     }
     let iterator = generatorFunction();
+    const param = 2; /*añadido*/
     const values = [
-      iterator.next('irrelevant').value, 
-      iterator.next(2).value
+      iterator.next('irrelevant').value,
+      iterator.next(param).value //  iterator.next(2).value
     ];
     assert.deepEqual(values, [1, 2]);
   });

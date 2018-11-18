@@ -4,25 +4,24 @@
 
 describe('Class creation', () => {
   it('is as simple as `class XXX {}`', function() {
-    let TestClass;
+    class TestClass {}; //let TestClass;
     const instance = new TestClass();
     assert.equal(typeof instance, 'object');
   });
   it('a class is block scoped', () => {
-    class Inside {}
-    {class Inside {}}
+    {class Inside {}}; //  class Inside {}
     assert.equal(typeof Inside, 'undefined');
   });
   it('the `constructor` is a special method', function() {
     class User {
-      constructor(id) {}
+      constructor(id) { return this.id = id} //constructor(id) {}
     }
     const user = new User(42);
     assert.equal(user.id, 42);
   });
   it('defining a method by writing it inside the class body', function() {
     class User {
-      
+      writesTests(){return false}  //(he escrito el método)
     }
     const notATester = new User();
     assert.equal(notATester.writesTests(), false);
@@ -30,7 +29,7 @@ describe('Class creation', () => {
   it('multiple methods need no commas (opposed to object notation)', function() {
     class User {
       wroteATest() { this.everWroteATest = true; }
-      isLazy() {  }
+      isLazy() { return !this.everWroteATest } //isLazy() { }
     }
     const tester = new User();
     assert.equal(tester.isLazy(), true);
@@ -38,7 +37,7 @@ describe('Class creation', () => {
     assert.equal(tester.isLazy(), false);
   });
   it('anonymous class', () => {
-    const classType = typeof {};
+    const classType = typeof class {}; //const classType = typeof {};
     assert.equal(classType, 'function');
   });
 });

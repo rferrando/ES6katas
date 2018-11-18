@@ -5,9 +5,9 @@
 describe('Inside a class`s constructor `super()` can be used', () => {
   it('`extend` a class and use `super()` to call the parent constructor', () => {
     class A {constructor() { this.levels = 1; }}
-    class B {
+    class B extends A { //class B {
       constructor() {
-        
+        super(); /*añadido*/
         this.levels++;
       }
     }
@@ -16,9 +16,9 @@ describe('Inside a class`s constructor `super()` can be used', () => {
   it('`super()` may also take params', () => {
     class A {constructor(startValue=1, addTo=1) { this.counter = startValue + addTo; }}
     class B extends A {
-      constructor(...args) { 
-        super();
-        this.counter++; 
+      constructor(...args) {
+        super(...args); //super();
+        this.counter++;
       }
     }
     assert.equal(new B(42, 2).counter, 45);
@@ -27,9 +27,9 @@ describe('Inside a class`s constructor `super()` can be used', () => {
     class A {inc() { this.countUp = 1; }}
     class B extends A {
       inc() {
-        super.inc();
+        //super.inc();
         this.countUp = 2;
-        
+        super.inc(); /*añadido*/
         return this.countUp;
       }
     }
@@ -40,7 +40,7 @@ describe('Inside a class`s constructor `super()` can be used', () => {
     class B extends A {
       constructor() {
         super();
-        this.isTop = '' + super.konstructer;
+        this.isTop = '' + super.constructor; //this.isTop = '' + super.konstructer;
       }
     }
     // assert.equal(new B().isTop, 'class A {constructor() {"parent"}}');

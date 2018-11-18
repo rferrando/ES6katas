@@ -12,20 +12,20 @@ describe('Generators returns an iterable object', function() {
     generator = generatorFunction();
   });
   it('a generator returns an object', function() {
-    const typeOfTheGenerator = '';
+    const typeOfTheGenerator = 'object'; //const typeOfTheGenerator = '';
     assert.equal(typeof generator, typeOfTheGenerator);
   });
   it('a generator object has a key `Symbol.iterator`', function() {
-    const key = '???';
+    const key = Symbol.iterator; //  const key = '???';
     assert.equal(key in generator, true);
   });
   it('the `Symbol.iterator` is a function', function() {
-    const theType = typeof generator.Symbol.iterator;
+    const theType = typeof generator[Symbol.iterator];//    const theType = typeof generator.Symbol.iterator;
     assert.equal(theType, 'function');
   });
   it('can be looped with `for-of`, which expects an iterable', function() {
     function iterateForOf(){
-      for (let value of {}) {
+      for (let value of generator[Symbol.iterator]()) { //for (let value of {}) {
         // no statements needed
       }
     }

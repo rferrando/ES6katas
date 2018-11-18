@@ -4,26 +4,26 @@
 
 describe('`Map` is a key/value map', function(){
   it('`Map` is a new global constructor function', function() {
-    const typeOfMap = '???';
+    const typeOfMap = 'function'; //const typeOfMap = '???';
     assert.equal(typeof Map, typeOfMap);
   });
   it('provides `new Map().set()` to add key+value pair, `get()` to read it by key', function() {
     let map = new Map();
-    map.set('key', null);
-    const value = map.get();
+    map.set('key', 'value'); //map.set('key', null);
+    const value = map.get('key'); //const value = map.get();
     assert.equal(value, 'value');
   });
   it('`has()` tells if map has the given key', function() {
     let map = new Map();
     map.set('key', 'value');
-    const hasIt = map.hazz;
+    const hasIt = map.has('key'); //const hasIt = map.hazz;
     assert.equal(hasIt, true);
   });
   it('a map is iterable', function() {
     let map = new Map();
     map.set('1', 'one');
     map.set('2', 'two');
-    const mapAsArray = map; // hint: kata #29 http://tddbin.com/#?kata=es6/language/array-api/from
+    const mapAsArray = Array.from(map); //  const mapAsArray = map;// hint: kata #29 http://tddbin.com/#?kata=es6/language/array-api/from
     assert.deepEqual(mapAsArray, [['1', 'one'], ['2', 'two']]);
   });
   it('complex types can be keys', function() {
@@ -31,7 +31,7 @@ describe('`Map` is a key/value map', function(){
     const otherObj = {x: 1};
     let map = new Map();
     map.set(obj, '');
-    map.set(otherObj, '');
+    //map.set(otherObj, ''); /*comentado*/
     assert.equal(map.has(otherObj), false);
   });
 });
